@@ -58,9 +58,6 @@ In **Access Controls** > **Node Attributes**, add your tag (replace `tag:ttrpg` 
 ```json
 "nodeAttrs": [
     {
-        // Funnel policy, which lets tailnet members control Funnel
-        // for their own devices.
-        // Learn more at https://tailscale.com/kb/1223/tailscale-funnel/
         "target": ["autogroup:member", "tag:ttrpg"],
         "attr":   ["funnel"],
     },
