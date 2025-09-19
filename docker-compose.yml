@@ -1,0 +1,41 @@
+secrets:
+  foundry_json:
+    file: ./secrets/foundry-secrets.json
+
+services:
+  foundry:
+    image: felddy/foundryvtt:latest
+    container_name: foundry
+    init: true
+    restart: unless-stopped
+    volumes: 
+      - ./foundrydata:/data
+    environment:
+      - FOUNDRY_PROXY_PORT=443
+      - FOUNDRY_PROXY_SSL=true
+    network_mode: service:ts-foundry
+    secrets:
+      - source: foundry_json
+        target: config.json
+
+  ts-foundry:
+    image: tailscale/tailscale:latest
+    container_name: ts-foundry
+    hostname: foundryvtt
+    environment:
+      - TS_AUTHKEY=${TS_AUTHKEY}
+      - TS_EXTRA_ARGS=--advertise-tags=tag:ttrpg
+      - TS_SERVE_CONFIG=/config/foundry.json
+      - TS_STATE_DIR=/var/lib/tailscale
+      - TS_USERSPACE=false
+      - TS_ACCEPT_DNS=true
+    volumes:
+      - ./ts-data-foundry/state:/var/lib/tailscale
+      - ./config/foundry.json:/config/foundry.json
+    devices:
+      - /dev/net/tun:/dev/net/tun
+    cap_add:
+      - net_admin
+      - sys_module
+    restart: unless-stopped
+    
