@@ -1,6 +1,6 @@
 # Foundry VTT with Tailscale Setup
 
-This repository provides a Docker-based setup for running Foundry Virtual Tabletop with Tailscale networking. It uses the [felddy-foundryvtt-docker](https://github.com/felddy/foundryvtt-docker) container and the [Tailscale](https://hub.docker.com/r/tailscale/tailscale) docker container. 
+This repository provides a Docker-based setup for running Foundry Virtual Tabletop with Tailscale networking to host your foundry to a custom, easily accessible url for you and your players. It uses the [felddy-foundryvtt-docker](https://github.com/felddy/foundryvtt-docker) container and the [Tailscale](https://hub.docker.com/r/tailscale/tailscale) docker container. 
 This is designed to work out of the box with a few prerequisites. 
 
 ## Prerequisites
